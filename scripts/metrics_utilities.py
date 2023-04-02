@@ -33,7 +33,7 @@ def cm_cr(model_name, y_test, y_pred, target_names, cr=True):
         model_name: name of the model
         y_test: test target variable
         y_pred: prediction
-        target_names: list of target class names
+        target_names: list of class names
         cr: print classification report if True - default
 
     Returns:
@@ -82,7 +82,7 @@ def plot_cm(model_name, y_test, y_pred, target_names, color, norm=True):
         model_name: name of the model
         y_test: test target variable
         y_pred: prediction
-        target_names: list of target class names
+        target_names: list of class names
         color: color palette
         norm: plot normalized matrix if True - default 
               plot unnormalized matrix if False
@@ -143,7 +143,7 @@ def plot_cm_unnorm_and_norm(model_name, y_test, y_pred, target_names, color):
         model_name: name of the model
         y_test: test target variable
         y_pred: prediction
-        target_names: list of target class names
+        target_names: list of class names
         color: color palette
 
     Returns:
@@ -208,13 +208,13 @@ def plot_conf_matrices(models_pred, y_test, target_names, color, norm=True):
     Args:
         models_pred: dictionary with model names as keys and predictions as values 
         y_test: test target variable
-        target_names: list of target class names
+        target_names: list of class names
         color: color palette
         norm: plot normalized matrices if True - default 
               plot unnormalized matrices if False
 
     Returns:
-        Plot all model's confusion matrix heatmaps, 2 per row,
+        Plot all model's confusion matrix heatmaps, in 2 columns,
         normalized (default) or unnormalized
     """    
         
