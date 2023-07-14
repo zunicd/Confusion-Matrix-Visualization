@@ -1,8 +1,9 @@
-# Collection of metrics utilities
-#   cm_cr - display confusion matrix dataframes and classification report
-#   plot_cm - plot unnormalized or normalized confusion matrix heatmap
-#   plot_cm_unnorm_and_norm - one model's confusion matrix heatmaps without and with normalization
-#   plot_conf_matrices - plot heatmaps for normalized or unnormalized confusion matrices for all models
+# Collection of metrics utilities:
+# 1.  cm_cr - display confusion matrix dataframes and classification report
+# 2.  plot_cm - plot unnormalized or normalized confusion matrix heatmap
+# 3.  plot_cm_unnorm_and_norm - one model's confusion matrix heatmaps without and with normalization
+# 4.  plot_conf_matrices - plot heatmaps for normalized or unnormalized confusion matrices for all models
+# 5.  plot_cm_sankey - interactive confusion matrix using Sankey diagram
 
 # Import dependencies
 import pandas as pd
@@ -22,7 +23,14 @@ from sklearn.metrics import confusion_matrix, classification_report
 # we will use dpi=72; None - for notebook default
 dpi = 72
 
-# ===============
+from plotly import graph_objects as go
+# set the appropriate renderer in Jupyter Lab to allow Plotly displays figure correctly
+# As suggested in the Plotly documentation, you might set the default renderer explicitly as iframe 
+#  or collab by adding following lines into your codes
+import plotly.io as pio
+pio.renderers.default = 'iframe' # or 'colab' or 'iframe' or 'iframe_connected' or 'sphinx_gallery'
+
+# 1. ===============
 
 # Function to display confusion matrix dataframes and classification report
 def cm_cr(model_name, y_test, y_pred, target_names, cr=True):
@@ -48,13 +56,13 @@ def cm_cr(model_name, y_test, y_pred, target_names, cr=True):
     # Create dataframe for confusion matrix for y_test and y_pred
     cm = confusion_matrix(y_test, y_pred)
     conf_df = pd.DataFrame(cm, columns=target_names, index=target_names)
-    conf_df.index.name = 'TRUE'
+    conf_df.index.name = 'ACTUAL'
     conf_df = conf_df.rename_axis('PREDICTED', axis='columns')
     
     # Dataframe for normalizwzed confusion matrix
     cm = np.around(cm / cm.sum(axis=1)[:, np.newaxis], 2)
     conf_dfn = pd.DataFrame(cm, columns=target_names, index=target_names)
-    conf_dfn.index.name = 'TRUE'
+    conf_dfn.index.name = 'ACTUAL'
     conf_dfn = conf_dfn.rename_axis('PREDICTED', axis='columns')
   
     # Display dataframes side by side
@@ -72,7 +80,7 @@ def cm_cr(model_name, y_test, y_pred, target_names, cr=True):
     print()
     
     
-# ==============
+# 2. ==============
 
 # Function to plot unnormalized or normalized confusion matrix heatmap
 def plot_cm(model_name, y_test, y_pred, target_names, color, norm=True):
@@ -127,12 +135,12 @@ def plot_cm(model_name, y_test, y_pred, target_names, color, norm=True):
     ax1.set_xticklabels(labels=target_names)
     ax1.set_yticklabels(labels=target_names, va='center')
     ax1.set_xlabel('PREDICTED', size=12)
-    ax1.set_ylabel('TRUE', size=12)
+    ax1.set_ylabel('ACTUAL', size=12)
 
     plt.show()
     
     
-# ======================
+# 3. ======================
 
 
 # Function to plot one model's confusion matrix heatmaps without and with normalization
@@ -172,7 +180,7 @@ def plot_cm_unnorm_and_norm(model_name, y_test, y_pred, target_names, color):
     ax1.set_yticklabels(labels=target_names, va='center')
     ax1.set_title('Unnormalized Confusion Matrix')
     ax1.set_xlabel('PREDICTED', size=12)
-    ax1.set_ylabel('TRUE', size=12)
+    ax1.set_ylabel('ACTUAL', size=12)
 
     # normalized confusion matrix
     matn = mat / mat.sum(axis=1)[:, np.newaxis]
@@ -193,14 +201,14 @@ def plot_cm_unnorm_and_norm(model_name, y_test, y_pred, target_names, color):
     ax2.set_yticklabels(labels=target_names, va='center')
     ax2.set_title('Normalized Confusion Matrix')
     ax2.set_xlabel('PREDICTED', size=12)
-    ax2.set_ylabel('TRUE', size=12)
+    ax2.set_ylabel('ACTUAL', size=12)
 
     plt.show()
     
     
-    # ===========
+# 4. ===============
     
-    # Function for ploting heatmaps for normalized or unnormalized confusion matrices for all models
+# Function for ploting heatmaps for normalized or unnormalized confusion matrices for all models
 def plot_conf_matrices(models_pred, y_test, target_names, color, norm=True):
     """ Plot confusion matrices heatmaps for all models, 
         normalized or unnormalized
@@ -295,6 +303,138 @@ def plot_conf_matrices(models_pred, y_test, target_names, color, norm=True):
         ax.set_yticklabels(labels=target_names, va='center')
         ax.set_title(name)
         ax.set_xlabel('PREDICTED', size=12)
-        ax.set_ylabel('TRUE', size=12)
+        ax.set_ylabel('ACTUAL', size=12)
 
     plt.show()
+    
+    
+# 5. ==================
+    
+# Function to display interactive confusion matrix using Sankey diagram
+def plot_cm_sankey(model_name, y_test, y_pred, target_names=None):
+    """ Plot confusion matrix with Sankey diagram 
+
+    Args:
+        model_name: name of the model
+        y_test: test target variable
+        y_pred: prediction
+        target_names: list of class names
+
+    Returns:
+        Plot Sankey diagram of confusion matrix
+    """ 
+    
+    # Calculate confusion matrix
+    cm = confusion_matrix(y_test, y_pred)
+    
+    # If class labels not passed, create dummy class labels
+    if target_names == None: 
+        target_names = []
+    if not len(target_names):
+        target_names = [f'class-{i+1}' for i in range(len(cm))]
+    
+    # Prepare dataframe with parameters for Sankey
+    def prepare_df_for_sankey(cm, target_names):
+        # create a dataframe
+        df = pd.DataFrame(cm, columns=[f'PREDICTED {s}' for s in target_names], index=[f'ACTUAL {s}' for s in target_names])
+        
+        # Create list of node labels
+        # target nodes = column labels (PREDICTED ...)
+        cl = df.columns.values.tolist()
+        # source nodes = row (index) labels (ACTUAL ...)
+        rl = df.index.values.tolist()
+        node_labels = rl + cl
+        
+        # Create dictionary with indices for node labels
+        node_labels_inds = {label:ind for ind, label in enumerate(node_labels)}
+        
+        # Stack label from column to row, output is Series
+        # Reset index to get DataFrame and rename columns
+        df = df.stack().reset_index()
+        df.rename(columns={0:'samples', 'level_0':'actual', 'level_1':'predicted'}, inplace=True)
+        
+        """
+               actual	       predicted	  samples
+        0	ACTUAL Stays	PREDICTED Stays	    1979
+        1	ACTUAL Stays	PREDICTED Exits	     410
+        2	ACTUAL Exits	PREDICTED Stays	     198
+        3	ACTUAL Exits	PREDICTED Exits	     413
+        """
+
+        # Normalized confusion matrix
+        cmn = np.around(cm / cm.sum(axis=1)[:, np.newaxis], 2)
+        # Add a column with normalized values of samples
+        df['norm_samples'] = cmn.ravel()
+        
+        # Helper function to add new columns: color and link_hover_text 
+        # 'color' - link color based on classification result (correct or incorrect)        
+        incorrect_red = "rgba(205, 92, 92, 0.8)"
+        correct_green = "rgba(144, 238, 144, 0.8)"
+        # # 'link_hover_text' - text for hovering on connecting links of sankey diagram
+        
+        def new_columns(row):
+            source_1 = ''.join(row.actual.split()[1:])
+            target_1 = ''.join(row.predicted.split()[1:])
+            # Correct classification
+            if source_1 == target_1:
+                row['color'] = correct_green
+                row['link_hover_text'] = f"{row.samples} ({row.norm_samples:.0%}) {source_1} samples correctly classified as {target_1}"
+            # Incorrect classification
+            else:
+                row['color'] = incorrect_red
+                row['link_hover_text'] = f"{row.samples} ({row.norm_samples:.0%}) {source_1} samples incorrectly classified as {target_1}"
+            return row
+
+        # Apply "new_columns" function
+        df = df.apply(lambda x: new_columns(x), axis=1)
+        
+        # Sankey only takes integers for node and target values,
+        #  so we need to map node label columns (actual, predicted) to numbers
+        # Using replace for multiple columns
+        df = df.replace({'actual':node_labels_inds, 'predicted':node_labels_inds})
+               
+        return df, node_labels
+    
+    
+    # Plotting confusion matrix as Sankey diagram
+    # Get dataframe and node labels
+    df, node_labels = prepare_df_for_sankey(cm, target_names)
+    
+    # Prepare for bold printing of some words in Plotly
+    node_labels = [f'{ls[0]} <b>{ls[1]}</b>' for ls in [l.split() for l in node_labels]]
+    df['link_hover_text'] = [f'{" ".join(ls[0:2])} <b>{ls[2]}</b> {" ".join(ls[3:-1])} <b>{ls[-1]}</b>' for ls in [l.split() for l in df['link_hover_text']]]
+    
+
+    fig = go.Figure(data=[go.Sankey(    
+        node = dict(
+        pad = 50,
+        thickness = 30,
+        line = dict(color = "gray", width = 1.0),
+        label = node_labels,
+        hovertemplate = "%{label} has total %{value:d} samples<extra></extra>"
+        ),
+    link = dict(
+        source = df.actual, 
+        target = df.predicted,
+        value = df.samples,
+        color = df.color,
+        customdata = df['link_hover_text'], 
+        hovertemplate = "%{customdata}<extra></extra>"  
+    ))])
+    
+    margins = {'l': 25, 'r': 25, 't': 70, 'b': 25}
+    
+    fig.update_layout(
+        title = {
+        'text': f'<b>{model_name}</b>',
+        'x':0.5,
+        },
+        font_size = 15,
+        width = 625,
+        height = 500,
+        # paper_bgcolor = '#d3d3d3',
+        margin = margins,
+    )
+    
+    return fig
+

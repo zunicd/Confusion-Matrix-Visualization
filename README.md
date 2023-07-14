@@ -1,5 +1,7 @@
 # Confusion Matrix Visualization
 
+## **Work in Progress!!!**
+
 Different ways to visualize confusion matrix
 
 In machine learning a confusion matrix is a kind of a table that is used to understand how well our classification model predictions perform, typically a supervised learning. It helps us a lot in understanding the model behaviour and interpreting the results.  
@@ -15,4 +17,5 @@ Some of the topics covered in the [notebook](https://github.com/zunicd/Confusion
   - single confusion matrix heatmap
   - unnormalized and normalized heatmaps, side by side
   - multiple (two and more) confusion matrices, in two columns
+  - using Sankey diagram
 
