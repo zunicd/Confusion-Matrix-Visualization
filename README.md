@@ -11,14 +11,82 @@ In machine learning a confusion matrix is a kind of a table that is used to unde
 
 In this project we will not discuss how to interpret a confusion matrix, that could be find [here](https://en.wikipedia.org/wiki/Confusion_matrix). Instead, we will present several ways of how to visualize a confusion matrix.
 
-Some of the topics covered in the [notebook](https://github.com/zunicd/Confusion-Matrix-Visualization/blob/main/Confusion%20Matrix%20Visualization.ipynb):  
+## Normalized vs. Unnormalized Matrix
 
-- normalized vs. unnormalized matrix
-- confusion matrix arrays 
-- confusion matrix dataframes, side by side
-- plotting:
-  - single confusion matrix heatmap
-  - unnormalized and normalized heatmaps, side by side
-  - multiple (two and more) confusion matrices, in two columns
-  - using Sankey diagram
+Unnormalized Confusion Matrix:
 
+```
+[[1979  410]
+ [ 198  413]]
+```
+
+Normalized Confusion Matrix:
+
+```
+[[0.83 0.17]
+ [0.32 0.68]]
+```
+
+
+
+## Confusion Matrix Arrays 
+
+```
+[[1979  410]
+ [ 198  413]]
+
+[[0.83 0.17]
+ [0.32 0.68]]
+```
+
+
+
+## Confusion Matrix Dataframes, Side by Side
+
+
+
+![](images/df_cm_side_by_side.png)  
+
+
+
+## Single Confusion Matrix Heatmap
+
+
+
+<img src="images/cm_heatmap_single.png" height="220" />  
+
+
+
+## Confusion Matrix Heatmaps, Side by Side
+
+#### Unnormalized and normalized confusion matrix for one model:
+
+
+
+<img src="images/2_cm_heatmaps_1_model.png" height="220" /> 
+
+
+
+#### Confusion matrices for 2 models, unnormalized or normalized
+
+
+
+<img src="images/2_cm_heatmaps_2_models.png" height="220" /> 
+
+
+
+ 
+
+## Multiple Confusion matriX Heatmaps, in Two Columns
+
+
+
+![](images/cm_heatmap_multiple.png) 
+
+
+
+## Confusion Matrix as Sankey diagram
+
+
+
+<img src="images/Sankey_cm.gif" width="450" />  
