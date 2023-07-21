@@ -68,13 +68,12 @@ This does not look very appealing, and it is a binary class example. Just imagin
 
 ## Confusion Matrix Dataframes - Side by Side
 
-To make our confusion matrix more appealing, we can display it as a Pandas DataFrame, and display both, unnormalized and normalized, matrices side by side (function **cm_cr**).
+To make our confusion matrix more appealing, we can display it as a Pandas DataFrame, and display both, unnormalized and normalized, matrices side by side (function **cm_cr**).  
+
 <figure>
 <img src="images/df_cm_side_by_side.png" width="400" />
 <figcaption><i>One model - unnormalized AND normalized (dataframes)</i></figcaption>
 </figure>
-
-
 
 
 ## Confusion Matrix as Seaborn Heatmap
@@ -97,6 +96,7 @@ Several functions were developed to plot confusion matrices for different number
 **plot_cm_unnorm_and_norm** - plots one model's confusion matrix heatmaps without and with normalization, side by side.
 
 This plot displays nicely the usefulness of normalized confusion matrix.
+
 <figure>
 <img src="images/2_cm_heatmaps_1_model.png" height="130" /> 
 <figcaption><i>One model - unnormalized AND normalized</i></figcaption>
@@ -111,9 +111,7 @@ This plot displays nicely the usefulness of normalized confusion matrix.
 <figcaption><i>Two models - normalized</i></figcaption>
 </figure>
 
-
-
-
+&nbsp;
 
 <figure>
 <img src="images/cm_heatmap_multiple.png" width="300" /> 
@@ -126,17 +124,13 @@ This plot displays nicely the usefulness of normalized confusion matrix.
 
 And finally, we can introduce another, more elegant and interactive way to visualize a confusion matrix - [Sankey Diagram](https://en.wikipedia.org/wiki/Sankey_diagram). To create our Sankey confusion matrix we used Python and Plotly. 
 
-The notebook [Confusion Matrix as Sankey Diagram](Confusion%20Matrix%20as%20Sankey%20Diagram.ipynb) describes step-by-step creation of the function **plot_cm_sankey**, which we use to display our confusion matrix as Sankey.
+The notebook [Confusion Matrix as Sankey Diagram](Confusion%20Matrix%20as%20Sankey%20Diagram.ipynb) describes step-by-step creation of the function **plot_cm_sankey**, which we use to display our confusion matrix as Sankey.  
 
+&nbsp;
 
+<img src="images/Sankey_cm.gif" width="450" />   
 
-
-
-<img src="images/Sankey_cm.gif" width="450" />  
-
-
-
-
+&nbsp;
 
 The **GIF** above displays the main features of our Sankey confusion matrix.
 
@@ -162,11 +156,12 @@ The **GIF** above displays the main features of our Sankey confusion matrix.
 
 - [Understanding the Confusion Matrix from Scikit learn](https://towardsdatascience.com/understanding-the-confusion-matrix-from-scikit-learn-c51d88929c79)
 - [(Visually) Interpreting the confusion-matrix](https://medium.com/analytics-vidhya/visually-interpreting-the-confusion-matrix-787a70b65678)
-- [Enrich Your Confusion Matrix With A Sankey Diagram](https://www.blog.dailydoseofds.com/p/enrich-your-confusion-matrix-with)
 - [Plotly - Displaying Figures using Plotly's Python graphing library](https://plotly.com/python/renderers/#displaying-figures)
 - [Plotly - Sankey Diagram in Python](https://plotly.com/python/sankey-diagram/#basic-sankey-diagram)
 
+## Acknowledgements
 
+I would like to thank Avi Chawla for his post [Enrich Your Confusion Matrix With A Sankey Diagram](https://www.blog.dailydoseofds.com/p/enrich-your-confusion-matrix-with) that inspired me to add Sankey visualization of a confusion matrix to this project.
 
 ## License
 
