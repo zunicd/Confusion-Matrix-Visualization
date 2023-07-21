@@ -19,7 +19,7 @@ In this project we will not discuss how to interpret a confusion matrix, that co
 
 ## Results
 
-The helper functions listed below were developed and collected in the script `metrics_utilities`. The execution of these functions is presented in the notebook [Confusion Matrix Visualization.ipynb](Confusion%20Matrix%20Visualization.ipynb)
+The helper functions listed below were developed and collected in the script [metrics_utilities.py](scripts/metrics_utilities.py). The execution of these functions is presented in the notebook [Confusion Matrix Visualization.ipynb](Confusion%20Matrix%20Visualization.ipynb)
 
 - **cm_cr** - display unnormalized and normalized confusion matrix dataframes side by side, and classification report 
 - **plot_cm** - plot unnormalized or normalized confusion matrix heatmap
@@ -113,6 +113,8 @@ This plot displays nicely the usefulness of normalized confusion matrix.
 
 
 
+
+
 <figure>
 <img src="images/cm_heatmap_multiple.png" width="300" /> 
 <figcaption><i>Seven models - normalized</i></figcaption>
@@ -124,11 +126,15 @@ This plot displays nicely the usefulness of normalized confusion matrix.
 
 And finally, we can introduce another, more elegant and interactive way to visualize a confusion matrix - [Sankey Diagram](https://en.wikipedia.org/wiki/Sankey_diagram). To create our Sankey confusion matrix we used Python and Plotly. 
 
-The notebook [Confusion Matrix as Sankey Diagram](Confusion%20Matrix%20as%20Sankey%20Diagram.ipynb) describes step-by-step creation of the function **plot_cm_sankey**.which we use to display our confusion matrix as Sankey.
+The notebook [Confusion Matrix as Sankey Diagram](Confusion%20Matrix%20as%20Sankey%20Diagram.ipynb) describes step-by-step creation of the function **plot_cm_sankey**, which we use to display our confusion matrix as Sankey.
+
+
 
 
 
 <img src="images/Sankey_cm.gif" width="450" />  
+
+
 
 
 
