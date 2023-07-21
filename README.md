@@ -71,8 +71,9 @@ This does not look very appealing, and it is a binary class example. Just imagin
 To make our confusion matrix more appealing, we can display it as a Pandas DataFrame, and display both, unnormalized and normalized, matrices side by side (function **cm_cr**).
 <figure>
 <img src="images/df_cm_side_by_side.png" width="400" />
-<figcaption><i>One model - unnormalized AND normalized (dataframes)</></figcaption>
+<figcaption><i>One model - unnormalized AND normalized (dataframes)</i></figcaption>
 </figure>
+
 
 
 
@@ -88,8 +89,9 @@ Several functions were developed to plot confusion matrices for different number
 
 <figure>
 <img src="images/cm_heatmap_single.png" height="130" /> 
-<figcaption><i>One model - unnormalized</></figcaption>
+<figcaption><i>One model - unnormalized</i></figcaption>
 </figure>
+
 ### b. Confusion Matrices for 1 Model - Unnormalized AND Normalized
 
 **plot_cm_unnorm_and_norm** - plots one model's confusion matrix heatmaps without and with normalization, side by side.
@@ -97,24 +99,25 @@ Several functions were developed to plot confusion matrices for different number
 This plot displays nicely the usefulness of normalized confusion matrix.
 <figure>
 <img src="images/2_cm_heatmaps_1_model.png" height="130" /> 
-<figcaption><i>One model - unnormalized AND normalized</></figcaption>
+<figcaption><i>One model - unnormalized AND normalized</i></figcaption>
 </figure>
+
 ### c. Confusion Matrices for Multiple Models - Unnormalized OR Normalized
 
 **plot_conf_matrices** - this function plots confusion matrices for multiple models with normalized matrices as default. You can switch to plot unnormalized matrices. 
 
-
 <figure>
 <img src="images/2_cm_heatmaps_2_models.png" height="130" /> 
-<figcaption><i>Two models - normalized</></figcaption>
+<figcaption><i>Two models - normalized</i></figcaption>
 </figure>
 
 
 
 <figure>
 <img src="images/cm_heatmap_multiple.png" width="300" /> 
-<figcaption><i>Seven models - normalized</></figcaption>
+<figcaption><i>Seven models - normalized</i></figcaption>
 </figure>
+
 
 
 ## Confusion Matrix as Sankey Diagram
