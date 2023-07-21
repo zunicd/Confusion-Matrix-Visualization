@@ -24,11 +24,6 @@ from sklearn.metrics import confusion_matrix, classification_report
 dpi = 72
 
 from plotly import graph_objects as go
-# set the appropriate renderer in Jupyter Lab to allow Plotly displays figure correctly
-# As suggested in the Plotly documentation, you might set the default renderer explicitly as iframe 
-#  or collab by adding following lines into your codes
-import plotly.io as pio
-pio.renderers.default = 'iframe' # or 'colab' or 'iframe' or 'iframe_connected' or 'sphinx_gallery'
 
 # 1. ===============
 
