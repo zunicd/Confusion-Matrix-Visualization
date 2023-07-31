@@ -79,7 +79,8 @@ To make our confusion matrix more appealing, we can utilize a Pandas DataFrame, 
 <figcaption><i>One model - unnormalized AND normalized (dataframes)</i></figcaption>
 </figure>
 
-If desired, we can display the classification report just below these two matrices. This integrated visualization will offer a comprehensive overview of the model's performance.
+
+If desired, we can display the classification report just below these two matrices. This integrated visualization will offer a comprehensive overview of the model's performance.  
 
 <figure>
 <img src="images/df_cm_side_by_side_cr.png" width="400" />
@@ -174,7 +175,7 @@ To interpret our Sankey confusion matrix, with **Stays** representing the negati
 
 ## Acknowledgements
 
-I would like to thank Avi Chawla for his post [Enrich Your Confusion Matrix With A Sankey Diagram](https://www.blog.dailydoseofds.com/p/enrich-your-confusion-matrix-with) that inspired me to study more about Sankey Diagrams and add Sankey visualization of a confusion matrix to this project.
+I would like to thank Avi Chawla for his post [Enrich Your Confusion Matrix With A Sankey Diagram](https://www.blog.dailydoseofds.com/p/enrich-your-confusion-matrix-with) that inspired me to study more about Sankey diagrams and add Sankey visualization of a confusion matrix to this project.
 
 ## License
 
