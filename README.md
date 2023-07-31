@@ -79,6 +79,7 @@ To make our confusion matrix more appealing, we can utilize a Pandas DataFrame, 
 <figcaption><i>One model - unnormalized AND normalized (dataframes)</i></figcaption>
 </figure>
 
+&nbsp;
 
 If desired, we can display the classification report just below these two matrices. This integrated visualization will offer a comprehensive overview of the model's performance.  
 
@@ -109,7 +110,7 @@ Several functions were developed that can visualize confusion matrices for vario
 
 `plot_cm_unnorm_and_norm()` - plots one model's confusion matrix heatmaps without and with normalization, side by side.
 
-This visual representation helps highlight the impact of normalization on the evaluation of the model's performance for each class, providing valuable insights at a glance.
+This visual representation helps highlight the impact of normalization on the evaluation of the model's performance for each class, providing valuable insights at a glance.  
 
 <figure>
 <img src="images/2_cm_heatmaps_1_model_rf.png" height="130" /> 
