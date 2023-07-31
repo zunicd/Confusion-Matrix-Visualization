@@ -72,7 +72,9 @@ This does not look very visually appealing, and it is just a binary class exampl
 
 ## Confusion Matrix Dataframes - Side by Side
 
-To make our confusion matrix more appealing, we can utilize a Pandas DataFrame, and display both, unnormalized and normalized, matrices side by side (function `cm_cr()`).  
+To make our confusion matrix more appealing, we can utilize a Pandas DataFrame, and display both, unnormalized and normalized, matrices side by side (function `cm_cr()`).   
+
+
 
 <figure>
 <img src="images/df_cm_side_by_side.png" width="400" />
@@ -81,12 +83,15 @@ To make our confusion matrix more appealing, we can utilize a Pandas DataFrame, 
 
 &nbsp;
 
-If desired, we can display the classification report just below these two matrices. This integrated visualization will offer a comprehensive overview of the model's performance.  
+If desired, we can display the classification report just below these two matrices. This integrated visualization will offer a comprehensive overview of the model's performance.    
+
+
 
 <figure>
-<img src="images/df_cm_side_by_side_cr.png" width="400" />
+<img src="images/df_cm_side_by_side_cr_v2.png" width="400" />
 <figcaption><i>Confusion matrices (dataframes) & classification report</i></figcaption>
 </figure>
+
 
 
 ## Confusion Matrix as Seaborn Heatmap
